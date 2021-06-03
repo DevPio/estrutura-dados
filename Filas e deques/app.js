@@ -5,14 +5,17 @@ class Queue {
     this.remove = 0;
   }
 
-  push(value) {
+  enqueue(value) {
     this.items[this.count] = value;
     this.count++;
   }
   peek() {
+    if (this.isEmpity()) {
+      return undefined;
+    }
     return this.items[this.remove];
   }
-  pop() {
+  dequeue() {
     if (this.isEmpity()) {
       return undefined;
     }
@@ -27,18 +30,43 @@ class Queue {
   isEmpity() {
     return this.count == 0;
   }
+
+  size() {
+    return this.count - this.remove;
+  }
+
+  clear() {
+    while (!this.isEmpity()) {
+      this.dequeue();
+    }
+  }
+
+  toString() {
+    if (this.isEmpity()) return undefined;
+
+    let objString = "";
+
+    for (let index = this.remove; index < this.count; index++) {
+      objString += `${index},${this.items[index]}\n`;
+    }
+
+    return objString;
+  }
 }
 
 let q = new Queue();
 
-q.push(1);
-q.push(2);
-q.push(3);
-q.push(3);
+console.log(q.isEmpity());
 
-console.log(q.pop());
-console.log(q.pop());
-console.log(q.pop());
-console.log(q.pop());
+q.enqueue("John");
+q.enqueue("Jack");
 
-console.log(q.items);
+console.log(q.toString());
+
+q.enqueue("Camila");
+
+q.dequeue();
+q.dequeue();
+
+console.log(q.toString());
+console.log(q.size());

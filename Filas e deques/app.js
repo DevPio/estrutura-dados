@@ -70,3 +70,39 @@ q.dequeue();
 
 console.log(q.toString());
 console.log(q.size());
+
+class Deque {
+  constructor() {
+    this.items = {};
+    this.remove = 0;
+    this.count = 0;
+  }
+
+  addBack(element) {
+    this.items[this.count] = element;
+    this.count++;
+  }
+
+  addFront(element) {
+    if (this.isEmpity()) {
+      this.addBack(element);
+    } else if (this.remove > 0) {
+      this.remove--;
+      this.items[this.remove] = element;
+    } else {
+      for (let index = this.count; index > 0; index--) {
+        this.items[index] = this.items[i - 1];
+      }
+    }
+  }
+
+  isEmpity() {
+    return this.count == 0;
+  }
+}
+
+const de = new Deque();
+
+de.addBack(1);
+
+de.addFront(1);

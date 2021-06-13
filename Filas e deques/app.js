@@ -200,3 +200,4 @@ function palindromoChecker(aString) {
 }
 
 console.log(palindromoChecker("au"));
+console.log(palindromoChecker("cocô"));

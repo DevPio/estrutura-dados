@@ -53,6 +53,20 @@ class LinkedList {
   get _head() {
     return this.head;
   }
+
+  getElementAt(index) {
+    if (index >= 0 && index <= this.count) {
+      let node = this.head;
+
+      for (let index = 0; index < index && node != null; index++) {
+        node = node.next;
+      }
+
+      return node;
+    }
+
+    return undefined;
+  }
 }
 
 const linkList = new LinkedList();
@@ -63,12 +77,12 @@ linkList.push(3);
 
 let iterable = linkList._head;
 
-console.log(linkList.removeAt(1));
-
 console.log(linkList.head);
 
-// while (iterable.next != null) {
-//   console.log(iterable.next);
+while (iterable.next != null) {
+  console.log(iterable.next);
 
-//   iterable = iterable.next;
-// }
+  iterable = iterable.next;
+}
+
+console.log(linkList.getElementAt(1));

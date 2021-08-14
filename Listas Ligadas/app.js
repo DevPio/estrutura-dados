@@ -35,12 +35,14 @@ class LinkedList {
     if (index == 0) {
       this.head = current.next;
     } else {
-      let previous;
+      let previous = this.getElementAt(index - 1);
 
-      for (let ite = 0; ite < index; ite++) {
-        previous = current;
-        current = current.next;
-      }
+      current = previous.next;
+
+      // for (let ite = 0; ite < index; ite++) {
+      //   previous = current;
+      //   current = current.next;
+      // }
 
       previous.next = current.next;
 
@@ -67,6 +69,27 @@ class LinkedList {
 
     return undefined;
   }
+
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(element);
+
+      if (index == 0) {
+        node.next = this.head;
+        this.head = node;
+      } else {
+        let prev = this.getElementAt(index - 1);
+        let current = prev.next;
+
+        node.next = current;
+        prev.next = node;
+      }
+      this.count++;
+      return true;
+    }
+
+    return false;
+  }
 }
 
 const linkList = new LinkedList();
@@ -75,14 +98,4 @@ linkList.push(1);
 linkList.push(2);
 linkList.push(3);
 
-let iterable = linkList._head;
-
-console.log(linkList.head);
-
-while (iterable.next != null) {
-  console.log(iterable.next);
-
-  iterable = iterable.next;
-}
-
-console.log(linkList.getElementAt(1));
+linkList.insert(8, 1);

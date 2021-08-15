@@ -1,3 +1,3 @@
 export function defaultEquals(a, b) {
-  return a == b;
+  return JSON.stringify(a) == JSON.stringify(b);
 }

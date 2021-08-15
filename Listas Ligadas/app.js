@@ -56,6 +56,11 @@ class LinkedList {
     return this.head;
   }
 
+  remove(element) {
+    let elementIndex = this.indexOf(element);
+
+    return this.removeAt(elementIndex);
+  }
   getElementAt(index) {
     if (index >= 0 && index <= this.count) {
       let node = this.head;
@@ -90,6 +95,58 @@ class LinkedList {
 
     return false;
   }
+
+  indexOf(element) {
+    // if (element != null) {
+    //   let current = this.head;
+    //   while (current.next != null || current.element != null) {
+    //     if (current.element == element) {
+    //       return current;
+    //     }
+    //     current = current.next;
+    //   }
+    // }
+    // return undefined;
+
+    let current = this.head;
+
+    for (let index = 0; index < this.count && current != null; index++) {
+      if (this.equalsFn(element, current.element)) {
+        return index;
+      }
+      current = current.next;
+    }
+
+    return -1;
+  }
+
+  size() {
+    return this.count;
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  getHead() {
+    return this.head;
+  }
+
+  toString() {
+    if (this.head == null) {
+      return "";
+    }
+
+    let objString = `${this.head}`;
+    let current = this.head.next;
+    for (let index = 0; index < this.size() && current != null; index++) {
+      objString = `${objString}${current.element}`;
+
+      current = current.next;
+    }
+
+    return objString;
+  }
 }
 
 const linkList = new LinkedList();
@@ -99,3 +156,7 @@ linkList.push(2);
 linkList.push(3);
 
 linkList.insert(8, 1);
+
+let element = linkList.indexOf(3);
+
+let resultString = linkList.toString();

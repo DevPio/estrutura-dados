@@ -1,4 +1,5 @@
 import { Node } from "./models/index.js";
+import { DoubleNode } from "./models/DoubleNode.js";
 import { defaultEquals } from "./utils/index.js";
 
 class LinkedList {
@@ -160,3 +161,27 @@ linkList.insert(8, 1);
 let element = linkList.indexOf(3);
 
 let resultString = linkList.toString();
+
+class DoublyLinkedList extends LinkedList {
+  constructor(equals = defaultStatus) {
+    super(equals);
+    this.tail = null;
+  }
+
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      let node = new DoubleNode(element);
+      let current = this.head;
+      if (index == 0) {
+        if (this.head == null) {
+          this.head = node;
+          this.tail = node;
+        } else {
+          node.next = this.head;
+          current.prev = node;
+          this.head = node;
+        }
+      }
+    }
+  }
+}

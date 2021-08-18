@@ -168,6 +168,11 @@ class DoublyLinkedList extends LinkedList {
     this.tail = null;
   }
 
+  removeAt(index) {
+    if (index >= 0 && index <= this.count) {
+    }
+  }
+
   insert(element, index) {
     if (index >= 0 && index <= this.count) {
       let node = new DoubleNode(element);
@@ -181,7 +186,31 @@ class DoublyLinkedList extends LinkedList {
           current.prev = node;
           this.head = node;
         }
+      } else if (index == this.count) {
+        current = this.tail;
+        current.next = node;
+        current.prev = current;
+        this.tail = node;
+      } else {
+        let prev = this.getElementAt(index - 1);
+
+        current = prev.next;
+        node.next = current;
+        prev.next = node;
+        current.prev = node;
+        node.prev = prev;
       }
+      this.count++;
+      return true;
     }
+
+    return false;
   }
 }
+
+const doublyLinkedVar = new DoublyLinkedList();
+
+doublyLinkedVar.insert(1, 0);
+doublyLinkedVar.insert(2, 1);
+doublyLinkedVar.insert(3, 2);
+console.log(doublyLinkedVar.head);

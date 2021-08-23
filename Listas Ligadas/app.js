@@ -241,4 +241,106 @@ class CircularLinkedList extends LinkedList {
   constructor(equals = defaultEquals) {
     super(equals);
   }
+
+  removeAt(index) {
+    if (index >= 0 && index <= this.count) {
+      let current = null;
+      if (index == 0) {
+        if (this.size() == 1) {
+          this.head = null;
+        } else {
+          const removed = this.head;
+          this.head = this.head.next;
+          current = this.getElementAt(this.size());
+          current.next = this.head;
+
+          current = removed;
+        }
+      } else {
+        let prev = this.getElementAt(index - 1);
+        current = prev.next;
+        prev.next = current.next;
+      }
+
+      this.count--;
+      return current.element;
+    }
+    return undefined;
+  }
+}
+
+const Compare = {
+  LESS_THAN: -1,
+  BIGGER_THAN: 1,
+};
+
+function defaultCompare(a, b) {
+  if (a == b) return 0;
+
+  return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
+}
+
+class SortedLinkedList extends LinkedList {
+  constructor(equals = defaultEquals, compare = defaultCompare) {
+    super(equals);
+    this.compareFn = compare;
+  }
+
+  insert(element, index = 0) {
+    if (this.isEmpty()) {
+      super.insert(element, 0);
+    }
+
+    const pos = this.getIndexNextSortElement(element);
+
+    return super.insert(element, pos);
+  }
+  getIndexNextSortElement(element) {
+    let current = this.head;
+    let index = 0;
+
+    for (; index < this.size && current; index++) {
+      let comp = this.compareFn(element, current.element);
+
+      if (comp == Compare.LESS_THAN) {
+        return index;
+      }
+      current = current.next;
+    }
+
+    return index;
+  }
+}
+
+class StackLinkedList {
+  constructor() {
+    this.items = new DoublyLinkedList();
+  }
+
+  push(element) {
+    this.items.push(element);
+  }
+  pop() {
+    if (this.isEmpty()) return undefined;
+
+    return this.items.removeAt(this.size() - 1);
+  }
+  peek() {
+    if (this.isEmpty()) {
+      return undefined;
+    }
+
+    return this.items.getElementAt(this.size() - 1).element;
+  }
+  isEmpty() {
+    return this.items.isEmpty();
+  }
+
+  size() {
+    return this.items.size();
+  }
+
+  toString() {
+    return this.items.toString();
+  }
 }

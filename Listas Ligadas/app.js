@@ -236,3 +236,9 @@ doublyLinkedVar.insert(1, 0);
 doublyLinkedVar.insert(2, 1);
 doublyLinkedVar.insert(3, 2);
 console.log(doublyLinkedVar.head);
+
+class CircularLinkedList extends LinkedList {
+  constructor(equals = defaultEquals) {
+    super(equals);
+  }
+}

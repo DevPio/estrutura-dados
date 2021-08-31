@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="containerB">
+      <div class="button">
+        <button data-calc="calc">MMC</button>
+      </div>
+      <div class="button">
+        <button data-calc="calc">MDC</button>
+      </div>
+    </div>
+    <section class="calc">
+      <div class="container">
+        <h3>MMC</h3>
+        <div class="inputs">
+          <input type="text" data-mmc />
+          <input type="text" data-mmc />
+        </div>
+        <div class="button">
+          <button onclick="mmcButton()">Calcular</button>
+        </div>
+      </div>
+      <div class="container inativo">
+        <h3>MDC</h3>
+        <div class="inputs">
+          <input type="text" data-mdc />
+          <input type="text" data-mdc />
+        </div>
+        <div class="button">
+          <button onclick="mdcButton()">Calcular</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="containerResult"></div>
+    <section class="result"></section>
+    <script src="app.js"></script>
+  </body>
+</html>

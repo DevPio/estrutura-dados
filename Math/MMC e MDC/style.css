@@ -1,0 +1,36 @@
+.calc {
+  display: flex;
+}
+.inativo {
+  display: none !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.inputs input {
+  padding: 12px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid rgb(209, 209, 209);
+}
+.button {
+  padding: 32px;
+}
+.button button {
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  color: white;
+  border-radius: 10px;
+  background-color: black;
+}
+.containerB {
+  display: flex;
+}

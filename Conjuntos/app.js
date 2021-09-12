@@ -123,6 +123,21 @@ class Set {
       }
     }
   }
+
+  isSubsetOf(otherSet) {
+    if (this.size() > otherSet.size()) return false;
+
+    let isSubset = true;
+    this.values().every((value) => {
+      if (!otherSet.has(value)) {
+        isSubset = false;
+        return false;
+      }
+      return true;
+    });
+
+    return isSubset;
+  }
 }
 
 let setOne = new Set();
@@ -148,3 +163,12 @@ let difTwo = setTwo.dif(setOne);
 //the difference is communative
 console.log(difOne);
 console.log(difTwo);
+
+let t = new Set();
+
+t.add(1);
+t.add(2);
+t.add(3);
+t.add(4);
+
+console.log(setOne.isSubsetOf(t));

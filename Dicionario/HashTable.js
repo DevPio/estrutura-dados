@@ -1,4 +1,4 @@
-import { defaultToString, ValuePair } from "./app";
+import { defaultToString, ValuePair } from "./app.js";
 export class HashTable {
   constructor(fn = defaultToString) {
     this.toStrFn = fn;
@@ -16,10 +16,12 @@ export class HashTable {
 
     return hash % 37;
   }
-
+  hashCode(key) {
+    return this.loseloseHashCode(key);
+  }
   put(key, value) {
     if (key != null && value != null) {
-      const keyString = this.loseloseHashCode(key);
+      const keyString = this.hashCode(key);
 
       this.table[keyString] = new ValuePair(key, value);
 
@@ -30,13 +32,13 @@ export class HashTable {
   }
 
   get(key) {
-    const getKey = this.loseloseHashCode(key);
+    const getKey = this.hashCode(key);
     const getValue = this.table[getKey];
     return getValue != null ? getValue.value : undefined;
   }
 
   remove(key) {
-    const hash = this.loseloseHashCode(key);
+    const hash = this.hashCode(key);
     const valuePair = this.table[hash];
     if (valuePair != null) {
       delete this.table[valuePair];
@@ -46,3 +48,16 @@ export class HashTable {
     return false;
   }
 }
+
+const hash = new HashTable();
+
+hash.put("Gandalf", "gandalf@email.com");
+hash.put("John", "johnsnow@email.com");
+hash.put("Tyrion", "tyrion@email.com");
+
+console.log(hash.hashCode("Gandalf") + " " + "Gandalf");
+console.log(hash.hashCode("John") + " " + "John");
+console.log(hash.hashCode("Tyrion") + " " + "Tyrion");
+
+console.log(hash.get("Gandalf"));
+console.log(hash.get("Luccas"));

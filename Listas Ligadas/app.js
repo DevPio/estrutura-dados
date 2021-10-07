@@ -2,7 +2,7 @@ import { Node } from "./models/index.js";
 import { DoubleNode } from "./models/DoubleNode.js";
 import { defaultEquals } from "./utils/index.js";
 
-class LinkedList {
+export class LinkedList {
   constructor(equalsFn = defaultEquals) {
     this.count = 0;
     this.head = null;

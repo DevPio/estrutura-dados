@@ -1,14 +1,16 @@
 import { defaultToString, ValuePair } from "./app.js";
+import { LinkedList } from "./util.js";
+
 export class HashTable {
   constructor(fn = defaultToString) {
     this.toStrFn = fn;
     this.table = {};
   }
 
-  loseloseHashCode(key) {
+  static loseloseHashCode(key) {
     if (typeof key == "number") return key;
 
-    const tableKey = this.toStrFn(key);
+    const tableKey = defaultToString(key);
     let hash = 0;
     for (let index = 0; index < tableKey.length; index++) {
       hash += tableKey[index].charCodeAt();
@@ -16,12 +18,12 @@ export class HashTable {
 
     return hash % 37;
   }
-  hashCode(key) {
-    return this.loseloseHashCode(key);
+  static hashCode(key) {
+    return HashTable.loseloseHashCode(key);
   }
   put(key, value) {
     if (key != null && value != null) {
-      const keyString = this.hashCode(key);
+      const keyString = HashTable.hashCode(key);
 
       this.table[keyString] = new ValuePair(key, value);
 
@@ -32,13 +34,13 @@ export class HashTable {
   }
 
   get(key) {
-    const getKey = this.hashCode(key);
+    const getKey = HashTable.hashCode(key);
     const getValue = this.table[getKey];
     return getValue != null ? getValue.value : undefined;
   }
 
   remove(key) {
-    const hash = this.hashCode(key);
+    const hash = HashTable.hashCode(key);
     const valuePair = this.table[hash];
     if (valuePair != null) {
       delete this.table[valuePair];
@@ -55,9 +57,31 @@ hash.put("Gandalf", "gandalf@email.com");
 hash.put("John", "johnsnow@email.com");
 hash.put("Tyrion", "tyrion@email.com");
 
-console.log(hash.hashCode("Gandalf") + " " + "Gandalf");
-console.log(hash.hashCode("John") + " " + "John");
-console.log(hash.hashCode("Tyrion") + " " + "Tyrion");
+console.log(HashTable.hashCode("Gandalf") + " " + "Gandalf");
+console.log(HashTable.hashCode("John") + " " + "John");
+console.log(HashTable.hashCode("Tyrion") + " " + "Tyrion");
 
 console.log(hash.get("Gandalf"));
 console.log(hash.get("Luccas"));
+
+class HashTableSeparateChaining {
+  constructor(toStrFn = defaultToString) {
+    this.toStrFn = toStrFn;
+    this.table = {};
+  }
+
+  put(key, value) {
+    if (key != null && value != null) {
+      let keyCode = HashTable.hashCode(key);
+
+      if (this.table[keyCode] != null) {
+        this.table[keyCode] = new LinkedList();
+      }
+      this.table[keyCode].push(new ValuePair(key, value));
+
+      return true;
+    }
+
+    return false;
+  }
+}

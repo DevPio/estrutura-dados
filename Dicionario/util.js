@@ -1,3 +1,14 @@
+export function defaultEquals(a, b) {
+  return JSON.stringify(a) == JSON.stringify(b);
+}
+
+export class Node {
+  constructor(element) {
+    this.element = element;
+    this.next = undefined;
+  }
+}
+
 export class LinkedList {
   constructor(equalsFn = defaultEquals) {
     this.count = 0;
@@ -15,7 +26,6 @@ export class LinkedList {
       while (current.next != null) {
         current = current.next;
       }
-
       current.next = node;
     }
 
@@ -31,6 +41,7 @@ export class LinkedList {
 
     if (index == 0) {
       this.head = current.next;
+      this.count--;
     } else {
       let previous = this.getElementAt(index - 1);
 

@@ -74,7 +74,7 @@ class HashTableSeparateChaining {
     if (key != null && value != null) {
       let keyCode = HashTable.hashCode(key);
 
-      if (this.table[keyCode] != null) {
+      if (this.table[keyCode] == null) {
         this.table[keyCode] = new LinkedList();
       }
       this.table[keyCode].push(new ValuePair(key, value));
@@ -84,4 +84,85 @@ class HashTableSeparateChaining {
 
     return false;
   }
+
+  get(key) {
+    const position = HashTable.hashCode(key);
+
+    const linkedList = this.table[position];
+
+    if (linkedList != null && !linkedList.isEmpty()) {
+      let current = linkedList.head;
+
+      while (current.next != null) {
+        if (current.element.key == key) {
+          return current.element.value;
+        }
+
+        current = current.next;
+      }
+    }
+    return undefined;
+  }
+
+  remove(key) {
+    const position = HashTable.hashCode(key);
+
+    const linkedList = this.table[position];
+
+    if (linkedList != null && !linkedList.isEmpty()) {
+      let current = linkedList.getHead();
+
+      const searchItem = (node) => {
+        if (node == null) {
+          return null;
+        }
+        if (node.element.key == key) {
+          linkedList.remove(current.element);
+          if (linkedList.isEmpty()) {
+            delete this.table[position];
+          }
+          return true;
+        } else {
+          searchItem(node.next);
+        }
+      };
+
+      return searchItem(current);
+
+      // while (current.next != null) {
+      //   if (current.element.key == key) {
+      //     linkedList.remove(current.element);
+      //   }
+
+      //   current = current.next;
+      // }
+    }
+    return undefined;
+  }
 }
+
+const newHash = new HashTableSeparateChaining();
+
+newHash.put("Ygritte", "Ygritte@email.com");
+newHash.put("Jonathan", "jonathan@email.com");
+newHash.put("Jamie", "jamie@email.com");
+newHash.put("Jack", "jack@email.com");
+newHash.put("Jasmine", "jasmine@email.com");
+newHash.put("Jake", "jake@email.com");
+newHash.put("Nathan", "nathan@email.com");
+newHash.put("Athelstan", "athelstan@email.com");
+newHash.put("Sue", "sue@email.com");
+
+newHash.put("Aethelwulf", "aethelwulf@email.com");
+
+newHash.put("Sargeras", "Ygritte@email.com");
+
+console.log(newHash.get("Jamie"));
+newHash.remove("Jamie");
+newHash.remove("Sue");
+
+console.log(newHash.get("Jamie"));
+
+newHash.remove("Jonathan");
+newHash.remove("Aethelwulf");
+console.log(newHash.get("Jamie"));

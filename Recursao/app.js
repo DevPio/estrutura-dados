@@ -36,6 +36,39 @@ const fatorialRecursivoLess = (number) => {
 console.log(fatorialRecursivoPlus(5));
 console.log(fatorialRecursivoLess(5));
 
+let count = 1;
+
+function rec() {
+  count = count + 1;
+
+  rec();
+}
+
+try {
+  rec();
+} catch (error) {
+  console.log(count);
+  console.log(error);
+}
+
+function fibonacciIterative(n) {
+  if (n < 1) return 0;
+  if (n <= 2) return 1;
+  let fibNM2 = 0;
+  let fibNM1 = 1;
+
+  let fibN = n;
+  for (let index = 2; index <= n; index++) {
+    fibN = fibNM1 + fibNM2;
+    fibNM2 = fibNM1;
+    fibNM1 = fibN;
+  }
+
+  return fibN;
+}
+
+console.log(fibonacciIterative(5));
+
 //Write a recursive function called nestedEvenSum
 
 //. Return the sum of all even numbers in an object which may contain nested objects.

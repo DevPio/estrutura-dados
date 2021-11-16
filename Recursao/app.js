@@ -69,6 +69,45 @@ function fibonacciIterative(n) {
 
 console.log(fibonacciIterative(5));
 
+function fibonacci(n) {
+  if (n < 0) return 2;
+  if (n <= 2) return 1;
+
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(5));
+
+function finonacciMemorazian(n) {
+  let initial = [0, 1];
+
+  let iterator = 0;
+  function fibonacciIterative() {
+    if (initial.length >= n) return initial;
+    initial[initial.length - 1 + 1] = initial[iterator] + initial[iterator + 1];
+    iterator++;
+    return fibonacciIterative();
+  }
+
+  return fibonacciIterative();
+}
+
+console.log(finonacciMemorazian(5));
+
+function fibonacceMemoization(n) {
+  const memo = [0, 1];
+  const fibonacci = (n) => {
+    if (memo[n] != null) return memo[n];
+
+    return (memo[n] = fibonacci(n - 1) + fibonacci(n - 2));
+  };
+
+  return fibonacci;
+}
+
+console.log("=====");
+console.log(fibonacceMemoization(5)(4));
+
 //Write a recursive function called nestedEvenSum
 
 //. Return the sum of all even numbers in an object which may contain nested objects.

@@ -1,0 +1,14 @@
+{
+  "editor.fontSize": 19,
+  "terminal.explorerKind": "external",
+  "debug.terminal.clearBeforeReusing": true,
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "Fira Code",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

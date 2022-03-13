@@ -44,6 +44,7 @@ class BinarySearchTree {
 
   search(key) {
     if (key != null) {
+      let count = 0;
       let current = this.root;
 
       if (current.key === key) {
@@ -52,18 +53,24 @@ class BinarySearchTree {
 
       function searchItem(node) {
         if (node != null) {
+          count++;
           if (key > node.key) {
             if (node.right != null) {
               if (node.right.key === key) {
+                count++;
+                console.log(count);
                 return true;
               }
+
               return searchItem(node.right);
             }
           } else {
             if (node.left != null) {
               if (node.left.key === key) {
+                console.log(count);
                 return true;
               }
+
               return searchItem(node.left);
             }
           }
@@ -72,7 +79,8 @@ class BinarySearchTree {
         }
       }
 
-      return searchItem(current);
+      searchItem(current);
+      console.log(count);
     }
   }
 
@@ -141,6 +149,18 @@ class BinarySearchTree {
     }
 
     return findItem(this.root);
+  }
+
+  inOrderTraverse(callback) {
+    this.inOrderTraverseNode(this.root, callback);
+  }
+
+  inOrderTraverseNode(node, cb) {
+    if (node != null) {
+      this.inOrderTraverseNode(node.right, cb);
+      cb(node.key);
+      this.inOrderTraverseNode(node.left, cb);
+    }
   }
 }
 

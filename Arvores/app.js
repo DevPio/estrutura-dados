@@ -79,8 +79,7 @@ class BinarySearchTree {
         }
       }
 
-      searchItem(current);
-      console.log(count);
+      return searchItem(current);
     }
   }
 
@@ -160,6 +159,31 @@ class BinarySearchTree {
       this.inOrderTraverseNode(node.right, cb);
       cb(node.key);
       this.inOrderTraverseNode(node.left, cb);
+    }
+  }
+
+  preOrderTraverse(callback) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+
+  preOrderTraverseNode(node, cb) {
+    if (node != null) {
+      cb(node.key);
+
+      this.preOrderTraverseNode(node.left, cb);
+      this.preOrderTraverseNode(node.right, cb);
+    }
+  }
+
+  posOrderTraverse(callback) {
+    this.posOrderTraverseNode(callback);
+  }
+
+  posOrderTraverseNode(node, cb) {
+    if (node != null) {
+      this.posOrderTraverseNode(node.left);
+      this.posOrderTraverseNode(node.right);
+      cb(node.key);
     }
   }
 }

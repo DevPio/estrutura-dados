@@ -1,5 +1,6 @@
 const BinarySearchTree = require("./app");
 const { deepStrictEqual } = require("assert");
+const { describe, it } = require("mocha");
 
 const tree = new BinarySearchTree();
 tree.insert(11);
@@ -18,30 +19,20 @@ tree.insert(18);
 tree.insert(25);
 tree.insert(6);
 
-// console.log(tree.remove(18));
-// deepStrictEqual(tree.insert(25), undefined);
+describe("tree search", () => {
+  it("search for the highest value in the tree", () => {
+    deepStrictEqual(tree.max(), 25);
+  });
 
-// deepStrictEqual(tree.search(5), true);
-// deepStrictEqual(tree.search(250), false);
+  it("find the lowest value in the tree", () => {
+    deepStrictEqual(tree.min(), 3);
+  });
 
-// deepStrictEqual(tree.max(), 100);
+  it("searches for a value in the tree, and returns true if it exist", () => {
+    deepStrictEqual(tree.search(5), true);
+  });
 
-// deepStrictEqual(tree.min(), -1);
-//console.log(tree.max());
-//console.log(tree.min());
-
-// tree.inOrderTraverse((key) => {
-//   console.log(key);
-// });
-
-let newTree = new BinarySearchTree();
-
-newTree.insert(20);
-newTree.insert(9);
-newTree.insert(15);
-newTree.insert(7);
-
-newTree.search(9);
-
-function less(tree) {}
-//console.log(JSON.stringify(tree.root, null, 2));
+  it("searches for a value in the tree, and returns false if the value does not exist", () => {
+    deepStrictEqual(tree.search(250), false);
+  });
+});

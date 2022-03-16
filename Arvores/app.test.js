@@ -19,20 +19,23 @@ tree.insert(18);
 tree.insert(25);
 tree.insert(6);
 
-describe("tree search", () => {
-  it("search for the highest value in the tree", () => {
-    deepStrictEqual(tree.max(), 25);
-  });
+console.log(tree.maxMethod());
+console.log(tree.minMethod());
 
-  it("find the lowest value in the tree", () => {
-    deepStrictEqual(tree.min(), 3);
-  });
+// describe("tree search", () => {
+//   it("search for the highest value in the tree", () => {
+//     deepStrictEqual(tree.max(), 25);
+//   });
 
-  it("searches for a value in the tree, and returns true if it exist", () => {
-    deepStrictEqual(tree.search(5), true);
-  });
+//   it("find the lowest value in the tree", () => {
+//     deepStrictEqual(tree.min(), 3);
+//   });
 
-  it("searches for a value in the tree, and returns false if the value does not exist", () => {
-    deepStrictEqual(tree.search(250), false);
-  });
-});
+//   it("searches for a value in the tree, and returns true if it exist", () => {
+//     deepStrictEqual(tree.search(5), true);
+//   });
+
+//   it("searches for a value in the tree, and returns false if the value does not exist", () => {
+//     deepStrictEqual(tree.search(250), false);
+//   });
+// });

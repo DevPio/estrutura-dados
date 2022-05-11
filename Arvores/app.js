@@ -214,6 +214,12 @@ class BinarySearchTree {
 
     return current;
   }
+
+  remove(key) {
+    this.root = this.removeNode(key);
+  }
+
+  removeNode(key) {}
 }
 
 module.exports = BinarySearchTree;

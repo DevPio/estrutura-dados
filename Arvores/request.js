@@ -19,6 +19,10 @@ binarySearch.insert(20);
 binarySearch.insert(18);
 binarySearch.insert(25);
 
+console.log(binarySearch.root);
+binarySearch.remove(3);
+console.log(binarySearch.root);
+
 let nodeMin = binarySearch.root;
 
 while (nodeMin != null && nodeMin.left) {
@@ -48,6 +52,6 @@ function search(key, root) {
   }
 }
 
-console.log(search(7, binarySearch.root));
-console.log(search(25, binarySearch.root));
-console.log(search(3, binarySearch.root));
+// console.log(search(7, binarySearch.root));
+// console.log(search(25, binarySearch.root));
+// console.log(search(3, binarySearch.root));

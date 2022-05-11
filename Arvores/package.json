@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "npx mocha -w *test.js"
+    "test": "npx mocha -w *test.js",
+    "debbuger": "node --inspect request.js"
   },
   "keywords": [],
   "author": "",

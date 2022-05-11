@@ -216,10 +216,48 @@ class BinarySearchTree {
   }
 
   remove(key) {
-    this.root = this.removeNode(key);
+    this.root = this.removeNode(key, this.root);
   }
 
-  removeNode(key) {}
+  removeNode(key, node) {
+    if (!node) {
+      return null;
+    }
+
+    if (key < node.key) {
+      node.left = this.removeNode(key, node.left);
+
+      return node;
+    } else if (key > node.key) {
+      node.right = this.removeNode(key, node.right);
+
+      return node;
+    } else {
+      if (node.left === null && node.right === null) {
+        node = null;
+
+        return node;
+      }
+
+      if (node.left === null) {
+        node = node.right;
+
+        return node;
+      } else if (node.right === null) {
+        node = node.left;
+
+        return node;
+      }
+
+      const aux = this.minNode(node.right);
+
+      node.key = aux.key;
+
+      node.right = this.removeNode(node.right, aux.key);
+
+      return node;
+    }
+  }
 }
 
 module.exports = BinarySearchTree;

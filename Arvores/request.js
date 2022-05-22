@@ -20,7 +20,7 @@ binarySearch.insert(18);
 binarySearch.insert(25);
 
 console.log(binarySearch.root);
-binarySearch.remove(3);
+binarySearch.remove(20);
 console.log(binarySearch.root);
 
 let nodeMin = binarySearch.root;

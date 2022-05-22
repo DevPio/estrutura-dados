@@ -124,31 +124,31 @@ class BinarySearchTree {
     return min;
   }
 
-  remove(key) {
-    function findItem(node) {
-      if (node != null) {
-        if (key > node.key) {
-          if (node.right != null) {
-            if (node.right.key === key) {
-              return node.right;
-            }
-            return findItem(node.right);
-          }
-        } else {
-          if (node.left != null) {
-            if (node.left.key === key) {
-              return node.left;
-            }
-            return findItem(node.left);
-          }
-        }
+  // remove(key) {
+  //   function findItem(node) {
+  //     if (node != null) {
+  //       if (key > node.key) {
+  //         if (node.right != null) {
+  //           if (node.right.key === key) {
+  //             return node.right;
+  //           }
+  //           return findItem(node.right);
+  //         }
+  //       } else {
+  //         if (node.left != null) {
+  //           if (node.left.key === key) {
+  //             return node.left;
+  //           }
+  //           return findItem(node.left);
+  //         }
+  //       }
 
-        return false;
-      }
-    }
+  //       return false;
+  //     }
+  //   }
 
-    return findItem(this.root);
-  }
+  //   return findItem(this.root);
+  // }
 
   inOrderTraverse(callback) {
     this.inOrderTraverseNode(this.root, callback);
@@ -176,7 +176,7 @@ class BinarySearchTree {
   }
 
   posOrderTraverse(callback) {
-    this.posOrderTraverseNode(callback);
+    this.posOrderTraverseNode(this.root, callback);
   }
 
   posOrderTraverseNode(node, cb) {
@@ -242,7 +242,7 @@ class BinarySearchTree {
       if (node.left === null) {
         node = node.right;
 
-        return node;
+        return null;
       } else if (node.right === null) {
         node = node.left;
 
